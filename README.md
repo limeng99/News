@@ -5,10 +5,10 @@
 <br/>
 视频播放效果<br/>
 <div>
-  <div align=center>
+  <div>
     <img width="200" height="356" src="https://github.com/limeng99/News/blob/master/images-folder/IMG_0968.PNG"/> 
     <img width="200" height="356" src="https://github.com/limeng99/News/blob/master/images-folder/IMG_0970.PNG"/> 
     <img width="200" height="356" src="https://github.com/limeng99/News/blob/master/images-folder/IMG_0971.PNG"/> 
     <img width="200" height="356" src="https://github.com/limeng99/News/blob/master/images-folder/IMG_0972.PNG"/> 
-    </div>
+   </div>
 </div>
