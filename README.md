@@ -8,9 +8,6 @@
   <div align=center>
     <img width="200" height="356" src="https://github.com/limeng99/News/blob/master/images-folder/IMG_0968.PNG"/> 
     <img width="200" height="356" src="https://github.com/limeng99/News/blob/master/images-folder/IMG_0970.PNG"/> 
-  </div>
-  <br/>
-  <div>
     <img width="200" height="356" src="https://github.com/limeng99/News/blob/master/images-folder/IMG_0971.PNG"/> 
     <img width="200" height="356" src="https://github.com/limeng99/News/blob/master/images-folder/IMG_0972.PNG"/> 
     </div>
