@@ -1,0 +1,40 @@
+//
+//  PrefixHeader.pch
+//  News
+//
+//  Created by 李萌萌 on 2018/4/10.
+//  Copyright © 2018年 李萌萌. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <UIKit/UIKit.h>
+#import "MJRefresh.h"
+#import "HttpRequestHelper.h"
+#import "YYKit.h"
+#import "MBProgressHUD+Extion.h"
+#import "Masonry.h"
+#import "AppGlobal.h"
+
+#define SCREEN_WIDTH            [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT           [UIScreen mainScreen].bounds.size.height
+#define App                     ((UIApplication *)[[UIApplication sharedApplication] delegate])
+#define AppWindow               [[UIApplication sharedApplication] delegate].window
+#define RGBA(r,g,b,a)           [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define RGB(r,g,b)              [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0]
+
+
+#if __has_feature(objc_arc)
+#define IMP_WEAK_SELF(vc) __weak typeof(vc) weakSelf = self;
+#else
+#define IMP_WEAK_SELF(vc) __block typeof(vc) weakSelf = self;
+#endif
+
+#ifdef DEBUG
+#define DLog(...) NSLog(@"%s(第%d行) %@", __PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
+#else
+#define DLog(...)
+#endif
+
+#endif /* PrefixHeader_pch */
