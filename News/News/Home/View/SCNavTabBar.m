@@ -46,7 +46,7 @@
 
 - (void)initConfig
 {
-    _navgationTabBar = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH-40, 44)];
+    _navgationTabBar = [[UIScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaStateHeight, SCREEN_WIDTH-40, 44)];
     _navgationTabBar.backgroundColor = [UIColor clearColor];
     _navgationTabBar.showsHorizontalScrollIndicator = NO;
     [self addSubview:_navgationTabBar];

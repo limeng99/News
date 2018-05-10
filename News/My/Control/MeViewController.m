@@ -24,6 +24,7 @@
     [super viewDidLoad];
 
     [self prepareUI];
+    
 }
 
 - (void)prepareUI

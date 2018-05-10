@@ -96,7 +96,7 @@ static BOOL _prePlayerIsFullScreen = NO;
 {
     if (self.isBeyondScreen) {return;}
     self.isBeyondScreen = YES;
-    self.frame = CGRectMake(SCREEN_WIDTH - self.width*0.5, SCREEN_HEIGHT - 49 - self.height*0.5, self.width*0.5, self.height*0.5);
+    self.frame = CGRectMake(SCREEN_WIDTH - self.width*0.5, SCREEN_HEIGHT - 49 - self.height*0.5 - SafeAreaBottomHeight, self.width*0.5, self.height*0.5);
     self.playerLayer.frame = self.bounds;
     self.maskView.frame = CGRectMake(0, 0, self.width, self.height);
     self.maskView.hidden = YES;

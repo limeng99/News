@@ -30,11 +30,13 @@
     [self.window makeKeyAndVisible];
     
     // db配置
-    [DataBase dataBaseConfig];
+    dispatch_async(dispatch_queue_create("fmdb_queue", NULL), ^{
+        [DataBase dataBaseConfig];
+    });
     
     // 定位
     [self locatemap];
-
+        
     return YES;
 }
 

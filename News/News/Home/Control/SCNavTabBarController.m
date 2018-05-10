@@ -36,6 +36,12 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
+- (void)viewSafeAreaInsetsDidChange
+{
+    [super viewSafeAreaInsetsDidChange];
+    DLog(@"%@",NSStringFromUIEdgeInsets(self.view.safeAreaInsets));
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -52,6 +58,8 @@
     
     [self viewConfig];
     [self initControl];
+    
+    AdjustsScrollViewInsetNever(self, self.mainView);
 }
 
 - (void)initControl
@@ -80,7 +88,7 @@
 
 - (void)viewConfig
 {
-    _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
+    _navTabBar = [[SCNavTabBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SafeAreaTopHeight)];
     _navTabBar.backgroundColor = [UIColor whiteColor];
     _navTabBar.delegate = self;
     _navTabBar.lineColor = [UIColor redColor];
@@ -88,18 +96,18 @@
     [_navTabBar updateData];
     [self.view addSubview:_navTabBar];
     
-    _mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    _mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREEN_HEIGHT-SafeAreaTopHeight)];
     _mainView.showsHorizontalScrollIndicator = NO;
     _mainView.pagingEnabled = YES;
     _mainView.delegate = self;
     _mainView.contentSize = CGSizeMake(SCREEN_WIDTH*_titles.count, 0);
     [self.view addSubview:_mainView];
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 63, SCREEN_WIDTH, 1)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight-1, SCREEN_WIDTH, 1)];
     lineView.backgroundColor = RGBA(216, 216, 216, 1.0);
     [self.view addSubview:lineView];
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 40, 20, 40, 40)];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 40, SafeAreaStateHeight, 40, 40)];
     [btn setImage:[UIImage imageNamed:@"top_navigation_square"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(weatherClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];

@@ -45,7 +45,7 @@
     
     //返回按钮
     UIButton *backbtn = [[UIButton alloc]init];
-    backbtn.frame = CGRectMake(5, 25, 50, 50);
+    backbtn.frame = CGRectMake(5, SafeAreaStateHeight+5, 50, 50);
     [backbtn setBackgroundImage:[UIImage imageNamed:@"weather_back"] forState:UIControlStateNormal];
     [backbtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:backbtn];
@@ -54,13 +54,13 @@
     CGFloat cityLabelW = 50;
     CGFloat cityLabelH = 20;
     CGFloat cityLabelX = (SCREEN_WIDTH - cityLabelW)/2;
-    CGFloat cityLabelY = 30;
+    CGFloat cityLabelY = SafeAreaStateHeight+10;
     UILabel *cityLabel = [[UILabel alloc]init];
     [self setupWithLabel:cityLabel frame:CGRectMake(cityLabelX, cityLabelY, cityLabelW, cityLabelH) FontSize:17 view:self textAlignment:NSTextAlignmentCenter];
     self.cityLabel = cityLabel;
     
     //定位图标
-    UIButton *locB = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(cityLabel.frame)+5, 30, 20, 20)];
+    UIButton *locB = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(cityLabel.frame)+5, SafeAreaStateHeight+10, 20, 20)];
     [locB setImage:[UIImage imageNamed:@"weather_location"] forState:UIControlStateNormal];
     [locB addTarget:self action:@selector(locClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:locB];

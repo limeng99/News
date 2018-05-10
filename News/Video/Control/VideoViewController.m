@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *needLoadArr;
 @property (nonatomic, assign) int page;
 
 @property (nonatomic, strong) GYPlayer *player;
@@ -39,6 +40,7 @@
 {
     [super viewDidLoad];
     _dataArray = [NSMutableArray array];
+    _needLoadArr = [NSMutableArray array];
 
     [self prepareUI];
 }
@@ -147,18 +149,7 @@
 //判断滚动事件，如何超出播放界面，停止播放
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-//    NSLog(@"--------%f",scrollView.contentOffset.y );
-
     if (self.player) {
-        
-//        if (scrollView.contentOffset.y + 64 - (self.player.currentOriginY + SCREEN_WIDTH * 0.56) > 0){
-//            NSLog(@"--------%f",scrollView.contentOffset.y - (self.player.currentOriginY + SCREEN_WIDTH * 0.56));
-//            DLog(@"tttttttttttttttt");
-//        }
-//        if (self.player.currentOriginY - (scrollView.contentOffset.y + SCREEN_HEIGHT - 49) > 0) {
-//            DLog(@"dddddddddddddddddd");
-//        }
-        
         if (scrollView.contentOffset.y + 64 - (self.player.currentOriginY + SCREEN_WIDTH * 0.56) > 0  || self.player.currentOriginY - (scrollView.contentOffset.y + SCREEN_HEIGHT - 49) > 0 ){
             [self.player beyondScreen];
         } else {
@@ -170,6 +161,27 @@
         }
     }
 }
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    NSIndexPath *ip = [self.tableView indexPathForRowAtPoint:CGPointMake(0, targetContentOffset->y)];
+    NSIndexPath *cip = [[self.tableView indexPathsForVisibleRows] firstObject];
+    NSInteger skipCount = 8;
+    if (labs(cip.row-ip.row)>skipCount) {
+        NSArray *temp = [self.tableView indexPathsForRowsInRect:CGRectMake(0, targetContentOffset->y, self.tableView.width, self.tableView.height)];
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:temp];
+        if (velocity.y<0) {
+            NSIndexPath *indexPath = [temp lastObject];
+            if (indexPath.row + 33) {
+                [arr addObject:[NSIndexPath indexPathForRow:indexPath.row-3 inSection:0]];
+                [arr addObject:[NSIndexPath indexPathForRow:indexPath.row-2 inSection:0]];
+                [arr addObject:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
+            }
+        }
+        [_needLoadArr addObjectsFromArray:arr];
+    }
+}
+
 
 #pragma mark - GYPlayerDelegate
 - (void)playerView:(GYPlayer *)playView didRemovePlay:(AVPlayer *)player

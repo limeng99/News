@@ -89,7 +89,7 @@
 {
     if (_pullView == nil) {
         __weak typeof(self) weakSelf = self;
-        _pullView = [[PullDownView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+        _pullView = [[PullDownView alloc] initWithFrame:CGRectMake(0, SafeAreaTopHeight, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
         _pullView.dataArray = [NSMutableArray arrayWithArray:self.classArray];
         _pullView.selectedBlock = ^(NSString *title){
             weakSelf.tag1 = title;

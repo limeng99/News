@@ -50,11 +50,13 @@
     [self initTableView];
     [self initBannerView];
     [self requestTopData];
+    
+    AdjustsScrollViewInsetNever(self, self.tableView);
 }
 
 - (void)initTableView
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-49)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-SafeAreaTopHeight-49)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];

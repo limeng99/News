@@ -28,6 +28,13 @@
     self.tabBar.tintColor = [UIColor redColor];
 }
 
+- (void)viewSafeAreaInsetsDidChange
+{
+    [super viewSafeAreaInsetsDidChange];
+    DLog(@"%@",NSStringFromUIEdgeInsets(self.view.safeAreaInsets));
+}
+
+
 - (void)initControl
 {
     SCNavTabBarController  *new = [[SCNavTabBarController alloc]init];
